@@ -127,8 +127,8 @@ getFile fid = (Just <$> getJSON (fileUrl fid) [])
     `catchError` handleNotFound
 
   where
-    handleNotFound (HttpError (StatusCodeException s _ _))
-        | s == status404 = return Nothing
+    -- handleNotFound (HttpError (StatusCodeException s _ _)) -- TODO: Find a different way to do this. Data type no longer formatted this way.
+    --     | s == status404 = return Nothing
     handleNotFound e = throwError e
 
 -- | Create a @File@ from @FileData@
