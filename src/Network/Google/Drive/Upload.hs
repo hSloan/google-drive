@@ -129,7 +129,7 @@ retryWithBackoff seconds f = f `catchError` \e ->
 
   where
     retryable :: ApiError -> Bool
-    retryable (HttpError (StatusCodeException s _ _)) = statusIsServerError s
+    retryable (HttpError _) = True -- TODO: find a way to show status code -- statusIsServerError s
     retryable _ = False
 
     delay :: Api ()
