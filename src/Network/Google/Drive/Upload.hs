@@ -94,8 +94,8 @@ getUploadedBytes url = do
         setMethod "PUT" .
         addHeader (hContentLength, "0") .
         addHeader ("Content-Range", "bytes */*") .
-        defaultRequest
         -- TODO: Fix Me
+        (\_ -> defaultRequest)
         -- allowStatus status308
 
     return $ fromMaybe 0 $ rangeEnd =<< lookup hRange (responseHeaders response)
