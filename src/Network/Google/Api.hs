@@ -38,7 +38,6 @@ module Network.Google.Api
 
     -- * Request helpers
     , addHeader
-    , allowStatus
     , setBody
     , setBodySource
     , setMethod
