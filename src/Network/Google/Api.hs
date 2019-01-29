@@ -95,7 +95,7 @@ import qualified Data.ByteString.Lazy as BL
 --   things like throttling or progress output themselves. If you just want to
 --   download to a file, use the re-exported @'sinkFile'@
 type DownloadSink a =
-    ResumableSource (ResourceT IO) ByteString -> ResourceT IO a
+    Source (ResourceT IO) ByteString -> ResourceT IO a
 
 data ApiError
     = HttpError HttpException -- ^ Exceptions raised by http-conduit
