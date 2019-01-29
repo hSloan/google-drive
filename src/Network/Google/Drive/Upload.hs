@@ -34,6 +34,7 @@ import Network.HTTP.Types
     , mkStatus
     , statusIsServerError
     )
+import Network.HTTP.Client.Conduit (defaultRequest)
 import System.Random (randomRIO)
 
 import qualified Data.ByteString.Char8 as C8
@@ -93,7 +94,9 @@ getUploadedBytes url = do
         setMethod "PUT" .
         addHeader (hContentLength, "0") .
         addHeader ("Content-Range", "bytes */*") .
-        allowStatus status308
+        defaultRequest
+        -- TODO: Fix Me
+        -- allowStatus status308
 
     return $ fromMaybe 0 $ rangeEnd =<< lookup hRange (responseHeaders response)
 
