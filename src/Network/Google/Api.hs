@@ -205,12 +205,12 @@ setBodySource len source request =
 -- | Modify the Request's status check to not treat the given status as an error
 allowStatus :: Status -> Request -> Request
 allowStatus status request =
-    let original = checkStatus request
+    let original = checkResponse request
         override s r c
             | s == status = Nothing
             | otherwise = original s r c
 
-    in request { checkStatus = override }
+    in request { checkResponse = override }
 
 -- | Decode a JSON body, capturing failure as an @'ApiError'@
 decodeBody :: FromJSON a => Response BL.ByteString -> Api a
